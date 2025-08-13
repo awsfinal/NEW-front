@@ -366,7 +366,7 @@ function DetailPage() {
         flexShrink: 0
       }}>
         <button
-          onClick={() => navigate('/main')}
+          onClick={() => navigate('/stamp')}
           style={{
             position: 'absolute',
             left: '20px',

@@ -1,16 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { translations, getLanguage } from '../utils/translations';
+import { translations, getLanguage, setLanguage as saveLanguage } from '../utils/translations';
+import { initializeFontSize } from '../utils/fontSizeUtils';
 
 function LoginPage() {
   const navigate = useNavigate();
   const [language, setLanguage] = useState('ko');
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const t = translations[language];
   
   useEffect(() => {
     const savedLanguage = getLanguage();
     setLanguage(savedLanguage);
+    initializeFontSize();
+    
+    // 글씨 크기 변경 이벤트 리스너
+    const handleFontSizeChange = () => {
+      initializeFontSize();
+    };
+    window.addEventListener('fontSizeChanged', handleFontSizeChange);
+    
+    return () => {
+      window.removeEventListener('fontSizeChanged', handleFontSizeChange);
+    };
   }, []);
+
+  // 언어 드롭다운 외부 클릭 시 닫기
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showLanguageDropdown && !event.target.closest('.language-dropdown')) {
+        setShowLanguageDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showLanguageDropdown]);
 
   useEffect(() => {
     // 구글 로그인 초기화 (로딩 대기)
@@ -101,27 +128,127 @@ function LoginPage() {
       flexDirection: 'column',
       overflow: 'hidden',
       justifyContent: 'flex-end',
-      padding: '0 20px 40px 20px'
+      padding: '0 20px 40px 20px',
+      position: 'relative'
     }}>
+      {/* 언어 설정 버튼 */}
+      <div className="language-dropdown" style={{
+        position: 'absolute',
+        top: '50px',
+        right: '20px',
+        zIndex: 1000
+      }}>
+        <div
+          style={{
+            padding: '8px 12px',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            fontWeight: '500',
+            color: '#333',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+        >
+          🌐 {t.language}
+        </div>
+        {showLanguageDropdown && (
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            right: '0',
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            overflow: 'hidden',
+            marginTop: '5px',
+            minWidth: '120px'
+          }}>
+            <div
+              style={{
+                padding: '12px 16px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                borderBottom: '1px solid #f0f0f0',
+                backgroundColor: language === 'ko' ? '#f0f8ff' : 'white'
+              }}
+              onClick={() => {
+                setLanguage('ko');
+                saveLanguage('ko');
+                setShowLanguageDropdown(false);
+              }}
+            >
+              <img src="/image/korea.png" alt="한국어" style={{ width: '20px', height: '14px', marginRight: '8px', objectFit: 'cover' }} />
+              한국어
+            </div>
+            <div
+              style={{
+                padding: '12px 16px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                backgroundColor: language === 'en' ? '#f0f8ff' : 'white'
+              }}
+              onClick={() => {
+                setLanguage('en');
+                saveLanguage('en');
+                setShowLanguageDropdown(false);
+              }}
+            >
+              <img src="/image/usa.png" alt="English" style={{ width: '20px', height: '14px', marginRight: '8px', objectFit: 'cover' }} />
+              English
+            </div>
+          </div>
+        )}
+      </div>
+      
       {/* 소셜 로그인 버튼들 */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
 
-        <img
-          src="/image/kakao_login.png"
-          alt="카카오 로그인"
-          onClick={() => handleSocialLogin('Kakao')}
-          style={{
-            width: '100%',
-            height: 'auto',
-            cursor: 'pointer',
-            borderRadius: '10px'
-          }}
-          onError={(e) => {
-            // 이미지 로드 실패시 기본 버튼으로 대체
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
-        />
+        {/* 카카오 로그인 */}
+        {language === 'ko' ? (
+          <img
+            src="/image/kakao_login.png"
+            alt="카카오 로그인"
+            onClick={() => handleSocialLogin('Kakao')}
+            style={{
+              width: '100%',
+              height: 'auto',
+              cursor: 'pointer',
+              borderRadius: '10px'
+            }}
+            onError={(e) => {
+              // 이미지 로드 실패시 기본 버튼으로 대체
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'block';
+            }}
+          />
+        ) : (
+          <button
+            onClick={() => handleSocialLogin('Kakao')}
+            style={{
+              padding: '15px',
+              borderRadius: '10px',
+              border: 'none',
+              fontSize: '16px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              backgroundColor: '#FEE500',
+              color: '#000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px'
+            }}
+          >
+            <span style={{ fontSize: '18px' }}>💬</span>
+            Continue with Kakao
+          </button>
+        )}
+        
         <button
           onClick={() => handleSocialLogin('Kakao')}
           style={{
@@ -139,39 +266,48 @@ function LoginPage() {
           {t.loginWithKakao}
         </button>
 
-        <img
-          src="/image/naver_login.png"
-          alt="네이버 로그인"
-          onClick={() => handleSocialLogin('Naver')}
-          style={{
-            width: '100%',
-            height: 'auto',
-            cursor: 'pointer',
-            borderRadius: '10px'
-          }}
-          onError={(e) => {
-            // 이미지 로드 실패시 기본 버튼으로 대체
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
-        />
-        <button
-          onClick={() => handleSocialLogin('Naver')}
-          style={{
-            padding: '15px',
-            borderRadius: '10px',
-            border: 'none',
-            fontSize: '16px',
-            fontWeight: '500',
-            cursor: 'pointer',
-            backgroundColor: '#03C75A',
-            color: 'white',
-            display: 'none'
-          }}
-        >
-          {t.loginWithNaver}
-        </button>
-
+        {/* 네이버 로그인 */}
+        {language === 'ko' ? (
+          <img
+            src="/image/naver_login.png"
+            alt="네이버 로그인"
+            onClick={() => handleSocialLogin('Naver')}
+            style={{
+              width: '100%',
+              height: 'auto',
+              cursor: 'pointer',
+              borderRadius: '10px'
+            }}
+            onError={(e) => {
+              // 이미지 로드 실패시 기본 버튼으로 대체
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'block';
+            }}
+          />
+        ) : (
+          <button
+            onClick={() => handleSocialLogin('Naver')}
+            style={{
+              padding: '15px',
+              borderRadius: '10px',
+              border: 'none',
+              fontSize: '16px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              backgroundColor: '#03C75A',
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px'
+            }}
+          >
+            <span style={{ fontSize: '18px' }}>N</span>
+            Continue with Naver
+          </button>
+        )}
+        
+        {/* 구글 로그인 */}
         <button
           onClick={() => handleSocialLogin('Google')}
           style={{
@@ -193,9 +329,8 @@ function LoginPage() {
             src="/image/google_icon.png"
             alt="Google"
             style={{ width: '20px', height: '20px' }}
-            onError={(e) => e.target.style.display = 'none'}
           />
-          {t.loginWithGoogle}
+          {language === 'ko' ? 'Google로 로그인' : 'Continue with Google'}
         </button>
       </div>
 

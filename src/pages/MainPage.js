@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { translations, getLanguage, setLanguage as saveLanguage } from '../utils/translations';
+import { initializeFontSize } from '../utils/fontSizeUtils';
 
 // CSS 애니메이션을 위한 스타일 추가
 const spinKeyframes = `
@@ -104,12 +105,22 @@ function MainPage() {
     const savedLanguage = getLanguage();
     setLanguage(savedLanguage);
     
+    // 글씨 크기 설정 초기화
+    initializeFontSize();
+    
+    // 글씨 크기 변경 이벤트 리스너
+    const handleFontSizeChange = () => {
+      initializeFontSize();
+    };
+    window.addEventListener('fontSizeChanged', handleFontSizeChange);
+    
     // GPS 수집 시작
     startGPSCollection();
     
-    // 컴포넌트 언마운트 시 GPS 중지
+    // 컴포넌트 언마운트 시 GPS 중지 및 이벤트 리스너 제거
     return () => {
       stopContinuousGPSTracking();
+      window.removeEventListener('fontSizeChanged', handleFontSizeChange);
     };
   }, []);
   
@@ -391,10 +402,10 @@ function MainPage() {
               animation: 'spin 1s linear infinite',
               margin: '0 auto 15px'
             }}></div>
-            <div style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '5px' }}>
+            <div style={{ fontSize: 'var(--base-font-size)', fontWeight: 'bold', marginBottom: '5px' }}>
               {t.loading}
             </div>
-            <div style={{ fontSize: '12px', color: '#666' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: '#666' }}>
               {t.gpsProcessing}
             </div>
           </div>
@@ -443,7 +454,7 @@ function MainPage() {
         <div style={{ position: 'relative' }}>
           <div 
             style={{ 
-              fontSize: '14px', 
+              fontSize: 'var(--base-font-size)', 
               color: '#007AFF',
               cursor: 'pointer',
               padding: '5px 10px',
@@ -475,7 +486,7 @@ function MainPage() {
                 style={{
                   padding: '8px 12px',
                   cursor: 'pointer',
-                  fontSize: '14px',
+                  fontSize: 'var(--base-font-size)',
                   borderBottom: '1px solid #f0f0f0',
                   backgroundColor: language === 'ko' ? '#f0f8ff' : 'white'
                 }}
@@ -485,13 +496,14 @@ function MainPage() {
                   setShowLanguageDropdown(false);
                 }}
               >
-                🇰🇷 한국어
+                <img src="/image/korea.png" alt="한국어" style={{ width: '20px', height: '14px', marginRight: '8px', objectFit: 'cover' }} />
+                한국어
               </div>
               <div 
                 style={{
                   padding: '8px 12px',
                   cursor: 'pointer',
-                  fontSize: '14px',
+                  fontSize: 'var(--base-font-size)',
                   backgroundColor: language === 'en' ? '#f0f8ff' : 'white'
                 }}
                 onClick={() => {
@@ -500,7 +512,8 @@ function MainPage() {
                   setShowLanguageDropdown(false);
                 }}
               >
-                🇺🇸 English
+                <img src="/image/usa.png" alt="English" style={{ width: '20px', height: '14px', marginRight: '8px', objectFit: 'cover' }} />
+                English
               </div>
             </div>
           )}
@@ -585,16 +598,16 @@ function MainPage() {
             border: '1px solid #007AFF',
             flexShrink: 0
           }}>
-            <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#007AFF', marginBottom: '5px' }}>
+            <div style={{ fontSize: 'var(--base-font-size)', fontWeight: 'bold', color: '#007AFF', marginBottom: '5px' }}>
               📍 {t.gpsCoordinates}
             </div>
-            <div style={{ fontSize: '12px', color: '#333' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: '#333' }}>
               {t.latitude}: {currentGPS.latitude.toFixed(7)}
             </div>
-            <div style={{ fontSize: '12px', color: '#333' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: '#333' }}>
               {t.longitude}: {currentGPS.longitude.toFixed(7)}
             </div>
-            <div style={{ fontSize: '12px', color: '#666', marginTop: '3px' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: '#666', marginTop: '3px' }}>
               {t.accuracy}: {Math.round(currentGPS.accuracy)}m | {t.measurement}: {currentGPS.measurementCount}{t.times} | {t.realTimeUpdate}
             </div>
           </div>
@@ -672,7 +685,7 @@ function MainPage() {
 
         {/* Tourism News */}
         <div style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
-          <h2 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '20px', margin: '0 0 20px 0' }}>
+          <h2 style={{ fontSize: 'var(--base-font-size)', fontWeight: 'bold', marginBottom: '20px', margin: '0 0 20px 0' }}>
             {t.tourismNews}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingBottom: '20px' }}>
@@ -741,7 +754,7 @@ function MainPage() {
                 {/* Right Info */}
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ 
-                    fontSize: '14px', 
+                    fontSize: 'var(--base-font-size)', 
                     fontWeight: '600', 
                     marginBottom: '3px',
                     color: '#333'
@@ -749,14 +762,14 @@ function MainPage() {
                     {language === 'ko' ? heritage.name : heritage.nameEn}
                   </div>
                   <div style={{ 
-                    fontSize: '12px', 
+                    fontSize: 'var(--small-font-size)', 
                     color: '#666',
                     marginBottom: '3px'
                   }}>
                     📍 {language === 'ko' ? heritage.address : heritage.addressEn}
                   </div>
                   <div style={{ 
-                    fontSize: '12px', 
+                    fontSize: 'var(--small-font-size)', 
                     color: '#007AFF',
                     fontWeight: '500'
                   }}>

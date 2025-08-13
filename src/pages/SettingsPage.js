@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { translations, getLanguage } from '../utils/translations';
+import { getFontSize, setFontSize as saveFontSize, initializeFontSize } from '../utils/fontSizeUtils';
 
 function SettingsPage() {
   const navigate = useNavigate();
   const [language, setLanguage] = useState('ko');
   const [fontSize, setFontSize] = useState('medium');
+  const [forceUpdate, setForceUpdate] = useState(0); // 강제 리렌더링용
   const t = translations[language];
   
   useEffect(() => {
     const savedLanguage = getLanguage();
+    const savedFontSize = getFontSize();
     setLanguage(savedLanguage);
-    setFontSize(savedLanguage === 'ko' ? '보통' : 'medium');
+    setFontSize(savedFontSize);
+    initializeFontSize();
   }, []);
+
+  const handleFontSizeChange = (newSize) => {
+    setFontSize(newSize);
+    saveFontSize(newSize);
+    // 강제 리렌더링으로 즉시 변경사항 반영
+    setForceUpdate(prev => prev + 1);
+  };
 
   const handleLogout = () => {
     if (window.confirm(language === 'ko' ? '로그아웃 하시겠습니까?' : 'Do you want to logout?')) {
@@ -60,7 +71,7 @@ function SettingsPage() {
         >
           ←
         </button>
-        <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{t.settingsTitle}</span>
+        <span style={{ fontSize: 'var(--title-font-size)', fontWeight: 'bold' }}>{t.settingsTitle}</span>
       </div>
 
       {/* Settings Content */}
@@ -95,10 +106,10 @@ function SettingsPage() {
                 alt="글자크기" 
                 style={{ width: '24px', height: '24px', marginRight: '15px' }}
               />
-              <span style={{ fontSize: '16px', flex: 1 }}>{t.textSize}</span>
+              <span style={{ fontSize: 'var(--base-font-size)', flex: 1 }}>{t.textSize}</span>
               <select 
                 value={fontSize}
-                onChange={(e) => setFontSize(e.target.value)}
+                onChange={(e) => handleFontSizeChange(e.target.value)}
                 style={{ 
                   padding: '5px 10px',
                   border: '1px solid #ddd',
@@ -157,7 +168,7 @@ function SettingsPage() {
                   alt="로그아웃" 
                   style={{ width: '24px', height: '24px', marginRight: '15px' }}
                 />
-                <span style={{ fontSize: '16px', color: '#333' }}>{t.logout}</span>
+                <span style={{ fontSize: 'var(--base-font-size)', color: '#333' }}>{t.logout}</span>
               </button>
               
               <button 
@@ -177,7 +188,7 @@ function SettingsPage() {
                   alt="회원탈퇴" 
                   style={{ width: '24px', height: '24px', marginRight: '15px' }}
                 />
-                <span style={{ fontSize: '16px', color: '#FF3B30' }}>{t.withdraw}</span>
+                <span style={{ fontSize: 'var(--base-font-size)', color: '#FF3B30' }}>{t.withdraw}</span>
               </button>
             </div>
           </div>
@@ -205,8 +216,8 @@ function SettingsPage() {
                 alt="버전" 
                 style={{ width: '24px', height: '24px', marginRight: '15px' }}
               />
-              <span style={{ fontSize: '16px', flex: 1 }}>{t.version}</span>
-              <span style={{ fontSize: '14px', color: '#666' }}>v1.0.0</span>
+              <span style={{ fontSize: 'var(--base-font-size)', flex: 1 }}>{t.version}</span>
+              <span style={{ fontSize: 'var(--small-font-size)', color: '#666' }}>v1.0.0</span>
             </div>
           </div>
 
@@ -218,7 +229,7 @@ function SettingsPage() {
             textAlign: 'center',
             marginTop: '5px'
           }}>
-            <div style={{ fontSize: '16px', fontWeight: '500', color: '#666' }}>{t.advertisement}</div>
+            <div style={{ fontSize: 'var(--base-font-size)', fontWeight: '500', color: '#666' }}>{t.advertisement}</div>
           </div>
         </div>
       </div>

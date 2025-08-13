@@ -133,7 +133,7 @@ function HeritagePage() {
             {error}
           </p>
           <button
-            onClick={() => navigate('/main')}
+            onClick={() => navigate('/stamp')}
             style={{
               padding: '10px 20px',
               backgroundColor: '#007AFF',
@@ -170,7 +170,7 @@ function HeritagePage() {
         flexShrink: 0
       }}>
         <button
-          onClick={() => navigate('/main')}
+          onClick={() => navigate('/stamp')}
           style={{
             position: 'absolute',
             left: '20px',

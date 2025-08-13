@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { translations, getLanguage } from '../utils/translations';
+import { initializeFontSize } from '../utils/fontSizeUtils';
 
 function StampPage() {
   const navigate = useNavigate();
@@ -18,6 +19,17 @@ function StampPage() {
   useEffect(() => {
     const savedLanguage = getLanguage();
     setLanguage(savedLanguage);
+    initializeFontSize();
+    
+    // 글씨 크기 변경 이벤트 리스너
+    const handleFontSizeChange = () => {
+      initializeFontSize();
+    };
+    window.addEventListener('fontSizeChanged', handleFontSizeChange);
+    
+    return () => {
+      window.removeEventListener('fontSizeChanged', handleFontSizeChange);
+    };
   }, []);
 
   // 사용자 위치 가져오기
@@ -568,9 +580,9 @@ function StampPage() {
   }, [mapLevel]);
 
   const categoryButtons = [
-    { key: 'culturalHeritage', label: t.culturalHeritage },
-    { key: 'touristSpot', label: t.touristSpot },
-    { key: 'experienceCenter', label: t.experienceCenter }
+    { key: 'culturalHeritage', label: t.culturalHeritage, image: '/image/museum.png' },
+    { key: 'touristSpot', label: t.touristSpot, image: '/image/tour.png' },
+    { key: 'experienceCenter', label: t.experienceCenter, image: '/image/exp.png' }
   ];
   return (
     <div style={{ 
@@ -626,16 +638,31 @@ function StampPage() {
             }}
             style={{
               flex: 1,
-              padding: '10px 15px',
+              padding: '12px 10px',
               border: selectedCategory === button.key ? '2px solid #4CAF50' : '1px solid #ddd',
               borderRadius: '8px',
               backgroundColor: selectedCategory === button.key ? '#e8f5e8' : 'white',
               color: selectedCategory === button.key ? '#4CAF50' : '#333',
               fontWeight: selectedCategory === button.key ? 'bold' : 'normal',
               cursor: 'pointer',
-              fontSize: '14px'
+              fontSize: '12px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '4px',
+              minHeight: '70px'
             }}
           >
+            <img 
+              src={button.image} 
+              alt={button.label}
+              style={{
+                width: '32px',
+                height: '32px',
+                objectFit: 'contain',
+                marginBottom: '2px'
+              }}
+            />
             {button.label}
           </button>
         ))}
@@ -1098,14 +1125,14 @@ function StampPage() {
       <div className="nav-bar">
         <div 
           className="nav-item"
-          onClick={() => navigate(-1)} // 뒤로가기
+          onClick={() => navigate('/main')} // 홈으로 이동
           style={{ cursor: 'pointer' }}
         >
           <div 
             className="nav-icon" 
-            style={{ backgroundImage: 'url(/image/back.png)' }}
+            style={{ backgroundImage: 'url(/image/home.png)' }}
           ></div>
-          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>뒤로</span>
+          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>홈</span>
         </div>
         <div 
           className="nav-item"

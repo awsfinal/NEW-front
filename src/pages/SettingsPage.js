@@ -245,7 +245,7 @@ function SettingsPage() {
             className="nav-icon" 
             style={{ backgroundImage: 'url(/image/rubber-stamp.png)' }}
           ></div>
-          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{t.stamp}</span>
+          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{language === 'ko' ? '찍고갈래' : 'go & take'}</span>
         </div>
         <div 
           className="nav-item"

@@ -86,7 +86,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(calc(-50% + 5px));
+  transform: translateX(-50%);
   width: 100%;
   max-width: 414px;
   background-color: white;
@@ -107,6 +107,14 @@ body {
 
 .nav-item.active {
   color: #007AFF;
+}
+
+.nav-item:nth-child(1) {
+  transform: translateX(-2px);
+}
+
+.nav-item:nth-child(2) {
+  transform: translateX(-8.5px);
 }
 
 .nav-icon {

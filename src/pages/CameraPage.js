@@ -240,7 +240,11 @@ function CameraPage() {
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
-      backgroundColor: '#000'
+      backgroundColor: '#000',
+      position: 'fixed',
+      width: '100%',
+      top: 0,
+      left: 0
     }}>
       {/* Camera View */}
       <div style={{
@@ -321,7 +325,7 @@ function CameraPage() {
         {/* 분석 중 오버레이 */}
         {isAnalyzing && (
           <div style={{
-            position: 'absolute',
+            position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
@@ -332,7 +336,8 @@ function CameraPage() {
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
-            zIndex: 2000
+            zIndex: 2000,
+            overflow: 'hidden'
           }}>
             <div style={{
               width: '60px',
@@ -391,7 +396,7 @@ function CameraPage() {
             onClick={handleCancel}
             style={{
               position: 'absolute',
-              left: 'calc(16.67% - 28px)', // 스탬프 중심과 일치 - 3px 왼쪽으로 이동
+              left: language === 'en' ? 'calc(16.67% - 29px)' : 'calc(16.67% - 25px)',
               background: 'transparent',
               border: 'none',
               color: 'white',
@@ -400,7 +405,7 @@ function CameraPage() {
               padding: '10px',
               width: '50px',
               textAlign: 'center',
-              transform: 'translateY(-10px)' // 10px 위로 이동
+              transform: 'translateY(-10px)'
             }}
           >
             {t.cancel}
@@ -412,7 +417,7 @@ function CameraPage() {
             disabled={!isInitialGPSComplete}
             style={{
               position: 'absolute',
-              left: 'calc(50% - 33px)', // 사진찍기 중심과 일치 + 2px 오른쪽
+              left: language === 'en' ? 'calc(50% - 38px)' : 'calc(50% - 34px)',
               width: '70px',
               height: '70px',
               borderRadius: '50%',
@@ -425,7 +430,7 @@ function CameraPage() {
               fontSize: '24px',
               boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
               opacity: isInitialGPSComplete ? 1 : 0.5,
-              transform: 'translateY(-10px)' // 10px 위로 이동
+              transform: 'translateY(-10px)'
             }}
           >
             📸
@@ -436,17 +441,17 @@ function CameraPage() {
             onClick={handleRetake}
             style={{
               position: 'absolute',
-              right: 'calc(16.67% - 33px)', // 설정 중심과 일치 - 3px 왼쪽으로 이동
+              right: 'calc(16.67% - 30px)',
               background: 'transparent',
               border: 'none',
               color: 'white',
-              fontSize: '16px', // 취소와 동일한 폰트 크기
+              fontSize: '16px',
               cursor: 'pointer',
               padding: '10px 5px',
               width: '60px',
               textAlign: 'center',
-              whiteSpace: 'nowrap', // 줄바꿈 방지
-              transform: 'translateY(-10px)' // 10px 위로 이동
+              whiteSpace: 'nowrap',
+              transform: 'translateY(-10px)'
             }}
           >
             {t.retake}
@@ -455,7 +460,19 @@ function CameraPage() {
       </div>
 
       {/* Navigation Bar */}
-      <div className="nav-bar">
+      <div className="nav-bar" style={{
+        position: 'fixed',
+        bottom: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        maxWidth: '414px',
+        backgroundColor: 'white',
+        borderTop: '1px solid #eee',
+        display: 'flex',
+        justifyContent: 'space-around',
+        padding: '10px 0'
+      }}>
         <div
           className="nav-item"
           onClick={() => navigate('/stamp')}
@@ -465,7 +482,7 @@ function CameraPage() {
             className="nav-icon"
             style={{ backgroundImage: 'url(/image/rubber-stamp.png)' }}
           ></div>
-          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{t.stamp}</span>
+          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{language === 'ko' ? '찍고갈래' : 'go & take'}</span>
         </div>
         <div
           className="nav-item active"

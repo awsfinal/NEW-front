@@ -14,6 +14,7 @@ function StampPage() {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [mapLevel, setMapLevel] = useState(10); // 최대 축소 레벨
   const [markers, setMarkers] = useState([]);
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const t = translations[language];
   
   useEffect(() => {
@@ -31,6 +32,13 @@ function StampPage() {
       window.removeEventListener('fontSizeChanged', handleFontSizeChange);
     };
   }, []);
+
+  // 언어 변경 함수
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
+    saveLanguage(newLanguage);
+    setShowLanguageDropdown(false);
+  };
 
   // 사용자 위치 가져오기
   useEffect(() => {
@@ -128,6 +136,38 @@ function StampPage() {
           category: '한옥마을',
           address: '전라북도 전주시 완산구',
           region: '전주'
+        },
+        {
+          id: 18,
+          name: '수원 화성행궁',
+          lat: 37.281868,
+          lng: 127.013561,
+          description: '조선 후기 행궁의 대표작',
+          popular: true,
+          image: '/heritage/hwaseong.jpg',
+          rating: 4.6,
+          reviews: 8920,
+          openTime: '09:00 - 18:00',
+          price: '1,500원',
+          category: '궁궐',
+          address: '경기도 수원시 팔달구',
+          region: '경기'
+        },
+        {
+          id: 19,
+          name: '오죽헌',
+          lat: 37.779184,
+          lng: 128.877613,
+          description: '율곡 이이의 생가',
+          popular: false,
+          image: '/heritage/ojukheon.jpg',
+          rating: 4.4,
+          reviews: 3450,
+          openTime: '09:00 - 18:00',
+          price: '3,000원',
+          category: '고택',
+          address: '강원도 강릉시 율곡로',
+          region: '강릉'
         }
       ],
       // 상세 문화재 (줌 레벨 8 이하에서 추가 표시)
@@ -179,6 +219,118 @@ function StampPage() {
           category: '사당',
           address: '서울특별시 종로구 훈정동 1',
           region: '서울'
+        },
+        {
+          id: 20,
+          name: '숭례문',
+          lat: 37.55954,
+          lng: 126.975281,
+          description: '서울의 남대문',
+          popular: true,
+          image: '/heritage/sungnyemun.jpg',
+          rating: 4.3,
+          reviews: 12450,
+          openTime: '24시간',
+          price: '무료',
+          category: '성문',
+          address: '서울특별시 중구 세종대로',
+          region: '서울'
+        },
+        {
+          id: 21,
+          name: '남한산성행궁',
+          lat: 37.478784,
+          lng: 127.282080,
+          description: '조선시대 임시 행궁',
+          popular: false,
+          image: '/heritage/namhansanseong.jpg',
+          rating: 4.5,
+          reviews: 5670,
+          openTime: '09:00 - 18:00',
+          price: '2,000원',
+          category: '행궁',
+          address: '경기도 광주시 남한산성면',
+          region: '경기'
+        },
+        {
+          id: 22,
+          name: '석굴암',
+          lat: 35.795173,
+          lng: 129.350288,
+          description: '신라 불교 조각의 걸작',
+          popular: true,
+          image: '/heritage/seokguram.jpg',
+          rating: 4.8,
+          reviews: 18920,
+          openTime: '07:00 - 18:00',
+          price: '5,000원',
+          category: '석굴',
+          address: '경상북도 경주시 진현동',
+          region: '경주'
+        },
+        {
+          id: 23,
+          name: '안동 하회마을',
+          lat: 35.794879,
+          lng: 128.518146,
+          description: '조선시대 전통 마을',
+          popular: true,
+          image: '/heritage/hahoe.jpg',
+          rating: 4.7,
+          reviews: 15430,
+          openTime: '09:00 - 18:00',
+          price: '3,000원',
+          category: '민속마을',
+          address: '경상북도 안동시 풍천면',
+          region: '안동'
+        },
+        {
+          id: 24,
+          name: '해인사',
+          lat: 35.801139,
+          lng: 128.097961,
+          description: '팔만대장경의 보고',
+          popular: true,
+          image: '/heritage/haeinsa.jpg',
+          rating: 4.9,
+          reviews: 21340,
+          openTime: '08:00 - 18:00',
+          price: '3,000원',
+          category: '사찰',
+          address: '경상남도 합천군 가야면',
+          region: '합천'
+        },
+        {
+          id: 25,
+          name: '낙산사',
+          lat: 38.124678,
+          lng: 128.627417,
+          description: '동해의 관음성지',
+          popular: false,
+          image: '/heritage/naksansa.jpg',
+          rating: 4.6,
+          reviews: 8920,
+          openTime: '04:00 - 20:00',
+          price: '4,000원',
+          category: '사찰',
+          address: '강원도 양양군 강현면',
+          region: '양양'
+        },
+        {
+          id: 26,
+          name: '월정사',
+          lat: 37.731891,
+          lng: 128.592879,
+          description: '오대산의 대표 사찰',
+          popular: true,
+          image: '/heritage/woljeongsa.jpg',
+          rating: 4.7,
+          reviews: 12450,
+          openTime: '05:00 - 19:00',
+          price: '4,000원',
+          category: '사찰',
+          address: '강원도 평창군 진부면',
+          region: '평창'
         }
       ]
     },
@@ -215,6 +367,134 @@ function StampPage() {
           category: '자연명소',
           address: '제주특별자치도 서귀포시 성산읍 성산리',
           region: '제주'
+        },
+        {
+          id: 27,
+          name: '북촌한옥마을',
+          lat: 37.582513,
+          lng: 126.985729,
+          description: '서울의 전통 한옥마을',
+          popular: true,
+          image: '/tourist/bukchon.jpg',
+          rating: 4.4,
+          reviews: 28920,
+          openTime: '24시간',
+          price: '무료',
+          category: '한옥마을',
+          address: '서울특별시 종로구 계동',
+          region: '서울'
+        },
+        {
+          id: 28,
+          name: '올림픽공원',
+          lat: 37.520697,
+          lng: 127.121565,
+          description: '88올림픽의 추억이 담긴 공원',
+          popular: false,
+          image: '/tourist/olympic_park.jpg',
+          rating: 4.3,
+          reviews: 15670,
+          openTime: '05:00 - 22:00',
+          price: '무료',
+          category: '공원',
+          address: '서울특별시 송파구 올림픽로',
+          region: '서울'
+        },
+        {
+          id: 29,
+          name: '서울숲',
+          lat: 37.544824,
+          lng: 127.039283,
+          description: '도심 속 자연 휴식공간',
+          popular: true,
+          image: '/tourist/seoul_forest.jpg',
+          rating: 4.5,
+          reviews: 22340,
+          openTime: '24시간',
+          price: '무료',
+          category: '공원',
+          address: '서울특별시 성동구 뚝섬로',
+          region: '서울'
+        },
+        {
+          id: 30,
+          name: '한국민속촌',
+          lat: 37.258862,
+          lng: 127.118068,
+          description: '전통문화 체험 테마파크',
+          popular: true,
+          image: '/tourist/folk_village.jpg',
+          rating: 4.6,
+          reviews: 18920,
+          openTime: '09:30 - 18:30',
+          price: '20,000원',
+          category: '테마파크',
+          address: '경기도 용인시 기흥구',
+          region: '용인'
+        },
+        {
+          id: 31,
+          name: '에버랜드',
+          lat: 37.294220,
+          lng: 127.201780,
+          description: '국내 최대 테마파크',
+          popular: true,
+          image: '/tourist/everland.jpg',
+          rating: 4.7,
+          reviews: 45670,
+          openTime: '10:00 - 22:00',
+          price: '62,000원',
+          category: '테마파크',
+          address: '경기도 용인시 처인구',
+          region: '용인'
+        },
+        {
+          id: 32,
+          name: '남이섬',
+          lat: 37.789881,
+          lng: 127.525814,
+          description: '겨울연가의 촬영지',
+          popular: true,
+          image: '/tourist/nami_island.jpg',
+          rating: 4.5,
+          reviews: 32100,
+          openTime: '07:30 - 21:40',
+          price: '16,000원',
+          category: '섬',
+          address: '강원도 춘천시 남산면',
+          region: '춘천'
+        },
+        {
+          id: 33,
+          name: '정동진',
+          lat: 37.691101,
+          lng: 129.034019,
+          description: '해돋이 명소',
+          popular: false,
+          image: '/tourist/jeongdongjin.jpg',
+          rating: 4.4,
+          reviews: 12450,
+          openTime: '24시간',
+          price: '무료',
+          category: '해변',
+          address: '강원도 강릉시 강동면',
+          region: '강릉'
+        },
+        {
+          id: 34,
+          name: '순천만',
+          lat: 34.882725,
+          lng: 127.513855,
+          description: '갈대밭과 철새의 천국',
+          popular: true,
+          image: '/tourist/suncheon_bay.jpg',
+          rating: 4.8,
+          reviews: 25670,
+          openTime: '08:00 - 19:00',
+          price: '8,000원',
+          category: '습지',
+          address: '전라남도 순천시 순천만길',
+          region: '순천'
         }
       ],
       detailed: [
@@ -265,6 +545,54 @@ function StampPage() {
           category: '문화거리',
           address: '서울특별시 마포구 와우산로',
           region: '서울'
+        },
+        {
+          id: 35,
+          name: '경포호',
+          lat: 37.797737,
+          lng: 128.908580,
+          description: '강릉의 대표 호수',
+          popular: false,
+          image: '/tourist/gyeongpo.jpg',
+          rating: 4.3,
+          reviews: 8920,
+          openTime: '24시간',
+          price: '무료',
+          category: '호수',
+          address: '강원도 강릉시 운정동',
+          region: '강릉'
+        },
+        {
+          id: 36,
+          name: '부산 감천문화마을',
+          lat: 35.097372,
+          lng: 129.011292,
+          description: '산토리니를 닮은 마을',
+          popular: true,
+          image: '/tourist/gamcheon.jpg',
+          rating: 4.6,
+          reviews: 34560,
+          openTime: '09:00 - 18:00',
+          price: '무료',
+          category: '문화마을',
+          address: '부산광역시 사하구 감내2로',
+          region: '부산'
+        },
+        {
+          id: 37,
+          name: '통영 동피랑 벽화마을',
+          lat: 34.845607,
+          lng: 128.427653,
+          description: '아름다운 벽화가 있는 마을',
+          popular: false,
+          image: '/tourist/dongpirang.jpg',
+          rating: 4.4,
+          reviews: 12340,
+          openTime: '24시간',
+          price: '무료',
+          category: '벽화마을',
+          address: '경상남도 통영시 동호동',
+          region: '통영'
         }
       ]
     },
@@ -351,6 +679,134 @@ function StampPage() {
           category: '과학관',
           address: '경기도 과천시 상하벌로 110',
           region: '경기'
+        },
+        {
+          id: 38,
+          name: '한국사찰음식문화체험관',
+          lat: 37.576052,
+          lng: 126.983828,
+          description: '전통 사찰음식 체험',
+          popular: false,
+          image: '/experience/temple_food.jpg',
+          rating: 4.5,
+          reviews: 3450,
+          openTime: '10:00 - 17:00',
+          price: '15,000원',
+          category: '체험관',
+          address: '서울특별시 종로구 우정국로',
+          region: '서울'
+        },
+        {
+          id: 39,
+          name: '남산골 한옥마을',
+          lat: 37.559276,
+          lng: 126.994419,
+          description: '도심 속 전통 한옥 체험',
+          popular: true,
+          image: '/experience/namsangol.jpg',
+          rating: 4.4,
+          reviews: 12450,
+          openTime: '09:00 - 21:00',
+          price: '무료',
+          category: '한옥체험',
+          address: '서울특별시 중구 퇴계로',
+          region: '서울'
+        },
+        {
+          id: 40,
+          name: '떡 박물관',
+          lat: 37.574871,
+          lng: 126.990637,
+          description: '한국 전통 떡 문화 체험',
+          popular: false,
+          image: '/experience/rice_cake_museum.jpg',
+          rating: 4.2,
+          reviews: 2340,
+          openTime: '10:00 - 17:00',
+          price: '5,000원',
+          category: '박물관',
+          address: '서울특별시 종로구 와룡동',
+          region: '서울'
+        },
+        {
+          id: 41,
+          name: '북촌전통공예체험관',
+          lat: 37.582424,
+          lng: 126.986027,
+          description: '전통 공예 체험',
+          popular: false,
+          image: '/experience/bukchon_craft.jpg',
+          rating: 4.3,
+          reviews: 1890,
+          openTime: '09:00 - 18:00',
+          price: '10,000원',
+          category: '체험관',
+          address: '서울특별시 종로구 계동',
+          region: '서울'
+        },
+        {
+          id: 42,
+          name: '안성팜랜드',
+          lat: 36.992021,
+          lng: 127.193397,
+          description: '농촌 체험 테마파크',
+          popular: true,
+          image: '/experience/anseong_farm.jpg',
+          rating: 4.6,
+          reviews: 15670,
+          openTime: '10:00 - 18:00',
+          price: '12,000원',
+          category: '농촌체험',
+          address: '경기도 안성시 공도읍',
+          region: '안성'
+        },
+        {
+          id: 43,
+          name: '국립중앙과학관',
+          lat: 36.375778,
+          lng: 127.375916,
+          description: '과학기술의 모든 것',
+          popular: true,
+          image: '/experience/daejeon_science.jpg',
+          rating: 4.7,
+          reviews: 22340,
+          openTime: '09:30 - 17:30',
+          price: '2,000원',
+          category: '과학관',
+          address: '대전광역시 유성구 대덕대로',
+          region: '대전'
+        },
+        {
+          id: 44,
+          name: '화폐박물관',
+          lat: 36.377506,
+          lng: 127.370477,
+          description: '화폐의 역사와 문화',
+          popular: false,
+          image: '/experience/currency_museum.jpg',
+          rating: 4.4,
+          reviews: 5670,
+          openTime: '10:00 - 17:00',
+          price: '무료',
+          category: '박물관',
+          address: '대전광역시 유성구 가정로',
+          region: '대전'
+        },
+        {
+          id: 45,
+          name: '임실치즈테마파크',
+          lat: 35.632731,
+          lng: 127.301278,
+          description: '치즈 만들기 체험',
+          popular: true,
+          image: '/experience/imsil_cheese.jpg',
+          rating: 4.5,
+          reviews: 8920,
+          openTime: '10:00 - 17:00',
+          price: '8,000원',
+          category: '체험관',
+          address: '전라북도 임실군 성수면',
+          region: '임실'
         }
       ]
     }
@@ -599,15 +1055,13 @@ function StampPage() {
         borderBottom: '1px solid #e0e0e0',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         position: 'relative',
         flexShrink: 0
       }}>
         <button 
           onClick={() => navigate('/main')}
           style={{
-            position: 'absolute',
-            left: '20px',
             background: 'none',
             border: 'none',
             fontSize: '18px',
@@ -618,6 +1072,65 @@ function StampPage() {
           ←
         </button>
         <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{t.stampCollection}</span>
+        
+        {/* Language Selector */}
+        <div style={{ position: 'relative' }}>
+          <div 
+            style={{ 
+              fontSize: '14px', 
+              color: '#007AFF',
+              cursor: 'pointer',
+              padding: '5px 8px',
+              borderRadius: '12px',
+              border: '1px solid #007AFF',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '3px',
+              minWidth: '60px',
+              justifyContent: 'center'
+            }}
+            onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+          >
+            🌐 {language === 'ko' ? 'KO' : 'EN'}
+          </div>
+          {showLanguageDropdown && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              right: 0,
+              backgroundColor: 'white',
+              border: '1px solid #007AFF',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              zIndex: 1000,
+              minWidth: '80px'
+            }}>
+              <div 
+                style={{
+                  padding: '6px 10px',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                  borderBottom: '1px solid #f0f0f0',
+                  backgroundColor: language === 'ko' ? '#f0f8ff' : 'white'
+                }}
+                onClick={() => handleLanguageChange('ko')}
+              >
+                한국어
+              </div>
+              <div 
+                style={{
+                  padding: '6px 10px',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                  backgroundColor: language === 'en' ? '#f0f8ff' : 'white'
+                }}
+                onClick={() => handleLanguageChange('en')}
+              >
+                English
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Category Buttons */}
@@ -679,7 +1192,7 @@ function StampPage() {
         flexShrink: 0
       }}>
         <span style={{ fontSize: '14px', color: '#666' }}>
-          {getCurrentData().length}개의 장소 (레벨 {mapLevel})
+          {getCurrentData().length}{language === 'ko' ? '개의 장소' : ' places'} ({language === 'ko' ? '레벨' : 'Level'} {mapLevel})
         </span>
         <div style={{
           display: 'flex',
@@ -752,7 +1265,7 @@ function StampPage() {
                   boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
                 }}>
                   <div style={{ fontSize: '24px', marginBottom: '10px' }}>🗺️</div>
-                  <div style={{ fontSize: '14px', color: '#666' }}>지도 로딩 중...</div>
+                  <div style={{ fontSize: '14px', color: '#666' }}>{language === 'ko' ? '지도 로딩 중...' : 'Loading map...'}</div>
                 </div>
               )}
             </div>
@@ -874,7 +1387,7 @@ function StampPage() {
                           cursor: 'pointer'
                         }}
                       >
-                        상세보기
+                        {language === 'ko' ? '상세보기' : 'Details'}
                       </button>
                     </div>
                   </div>
@@ -992,7 +1505,7 @@ function StampPage() {
                     color: '#666'
                   }}>
                     <div style={{ fontSize: '24px', marginBottom: '10px' }}>📍</div>
-                    <div>가까운 장소를 찾고 있습니다...</div>
+                    <div>{language === 'ko' ? '가까운 장소를 찾고 있습니다...' : 'Finding nearby places...'}</div>
                   </div>
                 )}
               </div>
@@ -1045,7 +1558,7 @@ function StampPage() {
                         borderRadius: '10px',
                         fontWeight: 'bold'
                       }}>
-                        인기
+                        {language === 'ko' ? '인기' : 'HOT'}
                       </div>
                       <img 
                         src={place.image}
@@ -1112,7 +1625,7 @@ function StampPage() {
                     color: '#666'
                   }}>
                     <div style={{ fontSize: '24px', marginBottom: '10px' }}>🔥</div>
-                    <div>인기 장소를 찾고 있습니다...</div>
+                    <div>{language === 'ko' ? '인기 장소를 찾고 있습니다...' : 'Finding popular places...'}</div>
                   </div>
                 )}
               </div>
@@ -1132,18 +1645,21 @@ function StampPage() {
             className="nav-icon" 
             style={{ backgroundImage: 'url(/image/home.png)' }}
           ></div>
-          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>홈</span>
+          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{language === 'ko' ? '홈' : 'Home'}</span>
         </div>
         <div 
           className="nav-item"
           onClick={() => navigate('/camera')}
-          style={{ cursor: 'pointer' }}
+          style={{ 
+            cursor: 'pointer',
+            transform: language === 'en' ? 'translateX(5px)' : 'translateX(0px)'
+          }}
         >
           <div 
             className="nav-icon" 
             style={{ backgroundImage: 'url(/image/nav_camera.png)' }}
           ></div>
-          <span style={{ fontSize: '11px', whiteSpace: 'nowrap' }}>{t.camera}</span>
+          <span style={{ fontSize: '11px', whiteSpace: 'nowrap' }}>{language === 'ko' ? '사진찍기' : 'Camera'}</span>
         </div>
         <div 
           className="nav-item"
@@ -1154,7 +1670,7 @@ function StampPage() {
             className="nav-icon" 
             style={{ backgroundImage: 'url(/image/settings.png)' }}
           ></div>
-          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{t.settings}</span>
+          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{language === 'ko' ? '설정' : 'Settings'}</span>
         </div>
       </div>
     </div>

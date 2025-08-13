@@ -114,8 +114,10 @@ function MainPage() {
     };
     window.addEventListener('fontSizeChanged', handleFontSizeChange);
     
-    // GPS 수집 시작
-    startGPSCollection();
+    // GPS 수집 시작 (약간의 지연 후)
+    setTimeout(() => {
+      startGPSCollection();
+    }, 100);
     
     // 컴포넌트 언마운트 시 GPS 중지 및 이벤트 리스너 제거
     return () => {
@@ -130,63 +132,114 @@ function MainPage() {
       return;
     }
     
-    getKalmanFilter().reset();
-    
-    for (let i = 0; i < 10; i++) {
+    // 캐시된 GPS 데이터 확인 (5분 이내)
+    const cachedGPS = localStorage.getItem('mainPageGPS');
+    if (cachedGPS) {
       try {
-        const position = await getSingleGPSReading();
-        const measurement = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          accuracy: position.coords.accuracy
-        };
+        const parsedGPS = JSON.parse(cachedGPS);
+        const now = Date.now();
+        const cacheAge = now - parsedGPS.timestamp;
         
-        const filteredResult = getKalmanFilter().update(measurement);
-        
-        const finalGPS = {
-          latitude: parseFloat(filteredResult.latitude.toFixed(7)),
-          longitude: parseFloat(filteredResult.longitude.toFixed(7)),
-          accuracy: filteredResult.accuracy,
-          timestamp: Date.now(),
-          deviceType: isIOS ? 'iOS' : isAndroid ? 'Android' : 'Other',
-          captureTime: new Date().toISOString(),
-          measurementCount: i + 1
-        };
-        
-        setCurrentGPS(finalGPS);
-        
-        // 정확도 50m 이하면 초기 수집 완료 및 실시간 업데이트 시작
-        if (filteredResult.accuracy <= 50) {
-          localStorage.setItem('mainPageGPS', JSON.stringify(finalGPS));
+        // 5분(300초) 이내의 캐시된 데이터가 있으면 사용
+        if (cacheAge < 300000) {
+          console.log('캐시된 GPS 데이터 사용:', parsedGPS);
+          setCurrentGPS(parsedGPS);
           setIsGPSReady(true);
           setIsLoading(false);
-          await sendGPSToBackend(finalGPS);
-          startContinuousGPSTracking(); // 실시간 GPS 업데이트 시작
+          startContinuousGPSTracking();
           return;
         }
-        
-        await sendGPSToBackend(finalGPS);
-        await new Promise(resolve => setTimeout(resolve, 500));
       } catch (error) {
-        console.error(`GPS 측정 ${i+1} 실패:`, error);
+        console.error('캐시된 GPS 데이터 파싱 오류:', error);
       }
     }
     
-    // 10번 측정 후에도 50m 이하가 안되면 마지막 값 사용
-    if (currentGPS) {
-      localStorage.setItem('mainPageGPS', JSON.stringify(currentGPS));
+    getKalmanFilter().reset();
+    
+    // 최대 15초 타임아웃 설정
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('GPS 수집 타임아웃')), 15000);
+    });
+    
+    try {
+      await Promise.race([
+        (async () => {
+          for (let i = 0; i < 10; i++) {
+            try {
+              const position = await getSingleGPSReading();
+              const measurement = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy: position.coords.accuracy
+              };
+              
+              const filteredResult = getKalmanFilter().update(measurement);
+              
+              const finalGPS = {
+                latitude: parseFloat(filteredResult.latitude.toFixed(7)),
+                longitude: parseFloat(filteredResult.longitude.toFixed(7)),
+                accuracy: filteredResult.accuracy,
+                timestamp: Date.now(),
+                deviceType: isIOS ? 'iOS' : isAndroid ? 'Android' : 'Other',
+                captureTime: new Date().toISOString(),
+                measurementCount: i + 1
+              };
+              
+              setCurrentGPS(finalGPS);
+              
+              // 정확도 50m 이하면 초기 수집 완료
+              if (filteredResult.accuracy <= 50) {
+                localStorage.setItem('mainPageGPS', JSON.stringify(finalGPS));
+                setIsGPSReady(true);
+                setIsLoading(false);
+                await sendGPSToBackend(finalGPS);
+                startContinuousGPSTracking();
+                return;
+              }
+              
+              await sendGPSToBackend(finalGPS);
+              await new Promise(resolve => setTimeout(resolve, 500));
+            } catch (error) {
+              console.error(`GPS 측정 ${i+1} 실패:`, error);
+            }
+          }
+          
+          // 10번 측정 후에도 50m 이하가 안되면 마지막 값 사용
+          if (currentGPS) {
+            localStorage.setItem('mainPageGPS', JSON.stringify(currentGPS));
+            setIsGPSReady(true);
+            startContinuousGPSTracking();
+          }
+        })(),
+        timeoutPromise
+      ]);
+    } catch (error) {
+      console.error('GPS 수집 실패 또는 타임아웃:', error);
+      
+      // 타임아웃이나 오류 발생 시 기본 위치 사용 (서울시청)
+      const defaultGPS = {
+        latitude: 37.5665,
+        longitude: 126.9780,
+        accuracy: 1000,
+        timestamp: Date.now(),
+        deviceType: 'Default',
+        captureTime: new Date().toISOString(),
+        measurementCount: 1
+      };
+      
+      setCurrentGPS(defaultGPS);
       setIsGPSReady(true);
-      startContinuousGPSTracking(); // 실시간 GPS 업데이트 시작
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
   
   const getSingleGPSReading = () => {
     return new Promise((resolve, reject) => {
       const gpsOptions = {
         enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0
+        timeout: 8000, // 8초로 단축
+        maximumAge: 30000 // 30초 이내 캐시 허용
       };
       
       if (isIOS) {
@@ -201,6 +254,11 @@ function MainPage() {
   
   // 실시간 GPS 업데이트 시작
   const startContinuousGPSTracking = () => {
+    // 기존 인터벌이 있으면 정리
+    if (gpsInterval) {
+      clearInterval(gpsInterval);
+    }
+    
     const interval = setInterval(async () => {
       try {
         const position = await getSingleGPSReading();
@@ -230,7 +288,7 @@ function MainPage() {
       } catch (error) {
         console.error('GPS 실시간 업데이트 실패:', error);
       }
-    }, 5000); // 5초마다 업데이트
+    }, 10000); // 10초마다 업데이트로 변경 (배터리 절약)
     
     setGpsInterval(interval);
   };
@@ -407,6 +465,9 @@ function MainPage() {
             </div>
             <div style={{ fontSize: 'var(--small-font-size)', color: '#666' }}>
               {t.gpsProcessing}
+            </div>
+            <div style={{ fontSize: 'var(--small-font-size)', color: '#999', marginTop: '5px' }}>
+              최대 15초 소요
             </div>
           </div>
         </div>
@@ -793,7 +854,7 @@ function MainPage() {
             className="nav-icon" 
             style={{ backgroundImage: 'url(/image/rubber-stamp.png)' }}
           ></div>
-          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{t.stamp}</span>
+          <span style={{ fontSize: '12px', whiteSpace: 'nowrap' }}>{language === 'ko' ? '찍고갈래' : 'go & take'}</span>
         </div>
         <div 
           className="nav-item"

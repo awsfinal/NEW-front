@@ -1,0 +1,9 @@
+@echo off
+echo 찍지오 프론트엔드 시작 중...
+echo.
+echo 의존성 설치 중...
+cmd /c npm install
+echo.
+echo 개발 서버 시작 중...
+cmd /c npm start
+pause

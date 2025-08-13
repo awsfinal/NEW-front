@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { translations, getLanguage } from '../utils/translations';
+import { translations, getLanguage, setLanguage as saveLanguage } from '../utils/translations';
 
 function LoginPage() {
   const navigate = useNavigate();
   const [language, setLanguage] = useState('ko');
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const t = translations[language];
   
   useEffect(() => {
@@ -100,9 +101,93 @@ function LoginPage() {
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
-      justifyContent: 'flex-end',
-      padding: '0 20px 40px 20px'
+      position: 'relative'
     }}>
+      {/* 언어 선택 버튼 */}
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
+        zIndex: 1000
+      }}>
+        <div 
+          style={{ 
+            fontSize: '14px', 
+            color: 'white',
+            cursor: 'pointer',
+            padding: '8px 12px',
+            borderRadius: '20px',
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            minWidth: '80px',
+            justifyContent: 'center'
+          }}
+          onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+        >
+          🌐 {t.language}
+        </div>
+        {showLanguageDropdown && (
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            right: 0,
+            marginTop: '5px',
+            backgroundColor: 'white',
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            zIndex: 1001,
+            minWidth: '120px'
+          }}>
+            <div 
+              style={{
+                padding: '10px 15px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                borderBottom: '1px solid #f0f0f0',
+                backgroundColor: language === 'ko' ? '#f0f8ff' : 'white',
+                borderRadius: '8px 8px 0 0'
+              }}
+              onClick={() => {
+                setLanguage('ko');
+                saveLanguage('ko');
+                setShowLanguageDropdown(false);
+              }}
+            >
+              🇰🇷 한국어
+            </div>
+            <div 
+              style={{
+                padding: '10px 15px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                backgroundColor: language === 'en' ? '#f0f8ff' : 'white',
+                borderRadius: '0 0 8px 8px'
+              }}
+              onClick={() => {
+                setLanguage('en');
+                saveLanguage('en');
+                setShowLanguageDropdown(false);
+              }}
+            >
+              🇺🇸 English
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* 컨텐츠 영역 */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: '0 20px 40px 20px'
+      }}>
       {/* 소셜 로그인 버튼들 */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
 
@@ -217,6 +302,7 @@ function LoginPage() {
         >
           {t.signUp}
         </button>
+      </div>
       </div>
     </div>
   );

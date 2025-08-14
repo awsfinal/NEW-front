@@ -90,7 +90,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 5, 
+          id: 2, 
           name: '불국사', 
           lat: 35.7898, 
           lng: 129.3320,
@@ -106,7 +106,7 @@ function StampPage() {
           region: '경주'
         },
         {
-          id: 6,
+          id: 3,
           name: '해동용궁사',
           lat: 35.1884,
           lng: 129.2233,
@@ -122,7 +122,7 @@ function StampPage() {
           region: '부산'
         },
         {
-          id: 7,
+          id: 4,
           name: '전주한옥마을',
           lat: 35.8150,
           lng: 127.1530,
@@ -138,7 +138,7 @@ function StampPage() {
           region: '전주'
         },
         {
-          id: 18,
+          id: 5,
           name: '수원 화성행궁',
           lat: 37.281868,
           lng: 127.013561,
@@ -154,7 +154,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 19,
+          id: 6,
           name: '오죽헌',
           lat: 37.779184,
           lng: 128.877613,
@@ -173,7 +173,7 @@ function StampPage() {
       // 상세 문화재 (줌 레벨 8 이하에서 추가 표시)
       detailed: [
         { 
-          id: 2, 
+          id: 7, 
           name: '창덕궁', 
           lat: 37.5794, 
           lng: 126.9910,
@@ -189,7 +189,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 3, 
+          id: 8, 
           name: '덕수궁', 
           lat: 37.5658, 
           lng: 126.9751,
@@ -205,7 +205,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 4, 
+          id: 9, 
           name: '종묘', 
           lat: 37.5741, 
           lng: 126.9935,
@@ -221,7 +221,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 20,
+          id: 10,
           name: '숭례문',
           lat: 37.55954,
           lng: 126.975281,
@@ -237,7 +237,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 21,
+          id: 11,
           name: '남한산성행궁',
           lat: 37.478784,
           lng: 127.282080,
@@ -253,7 +253,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 22,
+          id: 12,
           name: '석굴암',
           lat: 35.795173,
           lng: 129.350288,
@@ -269,7 +269,7 @@ function StampPage() {
           region: '경주'
         },
         {
-          id: 23,
+          id: 13,
           name: '안동 하회마을',
           lat: 35.794879,
           lng: 128.518146,
@@ -285,7 +285,7 @@ function StampPage() {
           region: '안동'
         },
         {
-          id: 24,
+          id: 14,
           name: '해인사',
           lat: 35.801139,
           lng: 128.097961,
@@ -301,7 +301,7 @@ function StampPage() {
           region: '합천'
         },
         {
-          id: 25,
+          id: 15,
           name: '낙산사',
           lat: 38.124678,
           lng: 128.627417,
@@ -317,7 +317,7 @@ function StampPage() {
           region: '양양'
         },
         {
-          id: 26,
+          id: 16,
           name: '월정사',
           lat: 37.731891,
           lng: 128.592879,
@@ -333,7 +333,7 @@ function StampPage() {
           region: '평창'
         },
         {
-          id: 27,
+          id: 17,
           name: '간송옛집',
           lat: 37.664850,
           lng: 127.028171,
@@ -349,7 +349,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 28,
+          id: 18,
           name: '뚝섬',
           lat: 37.529256,
           lng: 127.069888,
@@ -365,7 +365,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 29,
+          id: 19,
           name: '서대문형무소',
           lat: 37.574257,
           lng: 126.956134,
@@ -381,7 +381,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 30,
+          id: 20,
           name: '창녕위궁재사',
           lat: 37.620681,
           lng: 127.043026,
@@ -397,7 +397,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 31,
+          id: 21,
           name: '서오릉',
           lat: 37.623580,
           lng: 126.900817,
@@ -413,7 +413,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 32,
+          id: 22,
           name: '행주산성',
           lat: 37.595524,
           lng: 126.828176,
@@ -429,7 +429,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 33,
+          id: 23,
           name: '연천 전곡리 유적',
           lat: 38.014096,
           lng: 127.060172,
@@ -445,7 +445,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 34,
+          id: 24,
           name: '선교장',
           lat: 37.786533,
           lng: 128.885210,
@@ -461,7 +461,7 @@ function StampPage() {
           region: '강릉'
         },
         {
-          id: 35,
+          id: 25,
           name: '백제 역사 유적지구',
           lat: 36.463471,
           lng: 127.126703,
@@ -477,7 +477,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 36,
+          id: 26,
           name: '부여 정림사지',
           lat: 36.279221,
           lng: 126.913919,
@@ -493,7 +493,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 37,
+          id: 27,
           name: '공주 공산성',
           lat: 36.464623,
           lng: 127.124976,
@@ -509,7 +509,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 38,
+          id: 28,
           name: '보은 법주사',
           lat: 36.544000,
           lng: 127.833330,
@@ -525,7 +525,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 39,
+          id: 29,
           name: '충주 탑평리 칠층석탑',
           lat: 37.015820,
           lng: 127.866658,
@@ -541,7 +541,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 40,
+          id: 30,
           name: '담양 소쇄원',
           lat: 35.184197,
           lng: 127.012238,
@@ -557,7 +557,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 41,
+          id: 31,
           name: '화순 고인돌 유적',
           lat: 34.985092,
           lng: 126.918533,
@@ -573,7 +573,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 42,
+          id: 32,
           name: '남원 광한루원',
           lat: 35.403012,
           lng: 127.379312,
@@ -589,7 +589,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 43,
+          id: 33,
           name: '전주 경기전',
           lat: 35.815295,
           lng: 127.149790,
@@ -605,7 +605,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 44,
+          id: 34,
           name: '전동성당',
           lat: 35.813307,
           lng: 127.149233,
@@ -621,7 +621,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 45,
+          id: 35,
           name: '대릉원',
           lat: 35.838168,
           lng: 129.210707,
@@ -641,7 +641,7 @@ function StampPage() {
     touristSpot: {
       regional: [
         { 
-          id: 8, 
+          id: 101, 
           name: '남산타워', 
           lat: 37.5512, 
           lng: 126.9882,
@@ -657,7 +657,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 12, 
+          id: 102, 
           name: '제주도 성산일출봉', 
           lat: 33.4584, 
           lng: 126.9424,
@@ -673,7 +673,7 @@ function StampPage() {
           region: '제주'
         },
         {
-          id: 27,
+          id: 103,
           name: '북촌한옥마을',
           lat: 37.582513,
           lng: 126.985729,
@@ -689,7 +689,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 28,
+          id: 104,
           name: '올림픽공원',
           lat: 37.520697,
           lng: 127.121565,
@@ -705,7 +705,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 29,
+          id: 105,
           name: '서울숲',
           lat: 37.544824,
           lng: 127.039283,
@@ -721,7 +721,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 30,
+          id: 106,
           name: '한국민속촌',
           lat: 37.258862,
           lng: 127.118068,
@@ -737,7 +737,7 @@ function StampPage() {
           region: '용인'
         },
         {
-          id: 31,
+          id: 107,
           name: '에버랜드',
           lat: 37.294220,
           lng: 127.201780,
@@ -753,7 +753,7 @@ function StampPage() {
           region: '용인'
         },
         {
-          id: 32,
+          id: 108,
           name: '남이섬',
           lat: 37.789881,
           lng: 127.525814,
@@ -769,7 +769,7 @@ function StampPage() {
           region: '춘천'
         },
         {
-          id: 33,
+          id: 109,
           name: '정동진',
           lat: 37.691101,
           lng: 129.034019,
@@ -785,7 +785,7 @@ function StampPage() {
           region: '강릉'
         },
         {
-          id: 34,
+          id: 110,
           name: '순천만',
           lat: 34.882725,
           lng: 127.513855,
@@ -803,7 +803,7 @@ function StampPage() {
       ],
       detailed: [
         { 
-          id: 9, 
+          id: 111, 
           name: '한강공원', 
           lat: 37.5219, 
           lng: 127.0411,
@@ -819,7 +819,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 10, 
+          id: 112, 
           name: '명동', 
           lat: 37.5636, 
           lng: 126.9834,
@@ -836,7 +836,7 @@ function StampPage() {
         },
 
         {
-          id: 35,
+          id: 113,
           name: '경포호',
           lat: 37.797737,
           lng: 128.908580,
@@ -852,7 +852,7 @@ function StampPage() {
           region: '강릉'
         },
         {
-          id: 36,
+          id: 114,
           name: '부산 감천문화마을',
           lat: 35.097372,
           lng: 129.011292,
@@ -868,7 +868,7 @@ function StampPage() {
           region: '부산'
         },
         {
-          id: 37,
+          id: 115,
           name: '통영 동피랑 벽화마을',
           lat: 34.845607,
           lng: 128.427653,
@@ -884,7 +884,7 @@ function StampPage() {
           region: '통영'
         },
         {
-          id: 38,
+          id: 116,
           name: '새빛섬',
           lat: 37.511706,
           lng: 126.994915,
@@ -900,7 +900,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 39,
+          id: 117,
           name: '석촌호수',
           lat: 37.509358,
           lng: 127.098197,
@@ -916,7 +916,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 40,
+          id: 118,
           name: '서대문독립공원',
           lat: 37.575244,
           lng: 126.955082,
@@ -932,7 +932,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 41,
+          id: 119,
           name: '어린이대공원',
           lat: 37.548957,
           lng: 127.081541,
@@ -948,7 +948,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 42,
+          id: 120,
           name: '평화누리공원',
           lat: 37.892156,
           lng: 126.743081,
@@ -964,7 +964,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 43,
+          id: 121,
           name: '통일전망대',
           lat: 37.772959,
           lng: 126.677277,
@@ -980,7 +980,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 44,
+          id: 122,
           name: '광명동굴',
           lat: 37.426448,
           lng: 126.866432,
@@ -996,7 +996,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 45,
+          id: 123,
           name: '벽초지 문화수목원',
           lat: 37.800752,
           lng: 126.873854,
@@ -1012,7 +1012,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 46,
+          id: 124,
           name: '고성왕곡마을',
           lat: 38.340206,
           lng: 128.499996,
@@ -1028,7 +1028,7 @@ function StampPage() {
           region: '강원'
         },
         {
-          id: 47,
+          id: 125,
           name: '대관령 하늘목장',
           lat: 37.705737,
           lng: 128.719792,
@@ -1044,7 +1044,7 @@ function StampPage() {
           region: '강원'
         },
         {
-          id: 48,
+          id: 126,
           name: '대청호반길',
           lat: 36.477580,
           lng: 127.480683,
@@ -1055,12 +1055,12 @@ function StampPage() {
           reviews: 8920,
           openTime: '24시간',
           price: '무료',
-          category: '둥레길',
+          category: '둥래길',
           address: '대전광역시',
           region: '대전'
         },
         {
-          id: 49,
+          id: 127,
           name: '성심당',
           lat: 36.327680,
           lng: 127.427348,
@@ -1076,7 +1076,7 @@ function StampPage() {
           region: '대전'
         },
         {
-          id: 50,
+          id: 128,
           name: '한밭수목원',
           lat: 36.366780,
           lng: 127.388940,
@@ -1092,7 +1092,7 @@ function StampPage() {
           region: '대전'
         },
         {
-          id: 51,
+          id: 129,
           name: '단양 도담삼봉',
           lat: 37.000028,
           lng: 128.343939,
@@ -1108,7 +1108,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 52,
+          id: 130,
           name: '청남대',
           lat: 36.461736,
           lng: 127.489183,
@@ -1124,7 +1124,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 53,
+          id: 131,
           name: '대청호 명상정원',
           lat: 36.380649,
           lng: 127.482542,
@@ -1140,7 +1140,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 54,
+          id: 132,
           name: '보령 대천해수욕장',
           lat: 36.395521,
           lng: 126.516062,
@@ -1156,7 +1156,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 55,
+          id: 133,
           name: '태안 신두리 해안사구',
           lat: 36.845091,
           lng: 126.196728,
@@ -1172,7 +1172,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 56,
+          id: 134,
           name: '순천 낙안읍성',
           lat: 34.907252,
           lng: 127.341107,
@@ -1188,7 +1188,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 57,
+          id: 135,
           name: '고창 읍성',
           lat: 35.431931,
           lng: 126.703830,
@@ -1204,7 +1204,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 58,
+          id: 136,
           name: '경주 동궁과 월지',
           lat: 35.834797,
           lng: 129.226577,
@@ -1220,7 +1220,7 @@ function StampPage() {
           region: '경주'
         },
         {
-          id: 59,
+          id: 137,
           name: '포항 스페이스워크',
           lat: 36.065054,
           lng: 129.390418,
@@ -1236,7 +1236,7 @@ function StampPage() {
           region: '경상'
         },
         {
-          id: 60,
+          id: 138,
           name: '울산 태화강 국가정원',
           lat: 35.547826,
           lng: 129.296105,
@@ -1256,7 +1256,7 @@ function StampPage() {
     experienceCenter: {
       regional: [
         { 
-          id: 13, 
+          id: 201, 
           name: '국립중앙박물관', 
           lat: 37.5240, 
           lng: 126.9803,
@@ -1274,7 +1274,7 @@ function StampPage() {
       ],
       detailed: [
         { 
-          id: 14, 
+          id: 202, 
           name: '서울역사박물관', 
           lat: 37.5707, 
           lng: 126.9697,
@@ -1290,7 +1290,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 15, 
+          id: 203, 
           name: '국립민속박물관', 
           lat: 37.5796, 
           lng: 126.9770,
@@ -1306,7 +1306,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 16, 
+          id: 204, 
           name: '전쟁기념관', 
           lat: 37.5341, 
           lng: 126.9777,
@@ -1322,7 +1322,7 @@ function StampPage() {
           region: '서울'
         },
         { 
-          id: 17, 
+          id: 205, 
           name: '국립과천과학관', 
           lat: 37.4344, 
           lng: 126.9969,
@@ -1338,7 +1338,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 38,
+          id: 206,
           name: '한국사찰음식문화체험관',
           lat: 37.576052,
           lng: 126.983828,
@@ -1354,7 +1354,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 39,
+          id: 207,
           name: '남산골 한옥마을',
           lat: 37.559276,
           lng: 126.994419,
@@ -1370,7 +1370,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 40,
+          id: 208,
           name: '떡 박물관',
           lat: 37.574871,
           lng: 126.990637,
@@ -1386,7 +1386,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 41,
+          id: 209,
           name: '북촌전통공예체험관',
           lat: 37.582424,
           lng: 126.986027,
@@ -1402,7 +1402,7 @@ function StampPage() {
           region: '서울'
         },
         {
-          id: 42,
+          id: 210,
           name: '안성팜랜드',
           lat: 36.992021,
           lng: 127.193397,
@@ -1418,7 +1418,7 @@ function StampPage() {
           region: '안성'
         },
         {
-          id: 43,
+          id: 211,
           name: '국립중앙과학관',
           lat: 36.375778,
           lng: 127.375916,
@@ -1434,7 +1434,7 @@ function StampPage() {
           region: '대전'
         },
         {
-          id: 44,
+          id: 212,
           name: '화폐박물관',
           lat: 36.377506,
           lng: 127.370477,
@@ -1450,7 +1450,7 @@ function StampPage() {
           region: '대전'
         },
         {
-          id: 45,
+          id: 213,
           name: '임실치즈테마파크',
           lat: 35.632731,
           lng: 127.301278,
@@ -1466,7 +1466,7 @@ function StampPage() {
           region: '임실'
         },
         {
-          id: 46,
+          id: 214,
           name: '국립농업박물관',
           lat: 37.276165,
           lng: 126.982126,
@@ -1482,7 +1482,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 47,
+          id: 215,
           name: '파주 DMZ 생생 누리',
           lat: 37.890497,
           lng: 126.740686,
@@ -1498,7 +1498,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 48,
+          id: 216,
           name: '연천 전곡리 선사박물관',
           lat: 38.114960,
           lng: 127.063685,
@@ -1514,7 +1514,7 @@ function StampPage() {
           region: '경기'
         },
         {
-          id: 49,
+          id: 217,
           name: '영월 우구정가옥',
           lat: 37.205318,
           lng: 128.378038,
@@ -1530,7 +1530,7 @@ function StampPage() {
           region: '강원'
         },
         {
-          id: 50,
+          id: 218,
           name: '원주 한지테마파크',
           lat: 37.334327,
           lng: 127.935471,
@@ -1546,7 +1546,7 @@ function StampPage() {
           region: '강원'
         },
         {
-          id: 51,
+          id: 219,
           name: '한국전통음식문화체험관 정강원',
           lat: 37.570270,
           lng: 128.407972,
@@ -1562,7 +1562,7 @@ function StampPage() {
           region: '강원'
         },
         {
-          id: 52,
+          id: 220,
           name: '도계유리나라',
           lat: 37.193986,
           lng: 129.032316,
@@ -1578,7 +1578,7 @@ function StampPage() {
           region: '강원'
         },
         {
-          id: 53,
+          id: 221,
           name: '대전 동춘당',
           lat: 36.364790,
           lng: 127.441208,
@@ -1594,7 +1594,7 @@ function StampPage() {
           region: '대전'
         },
         {
-          id: 54,
+          id: 222,
           name: '한국지질자원연구원 지질박물관',
           lat: 37.377512,
           lng: 127.362457,
@@ -1610,7 +1610,7 @@ function StampPage() {
           region: '대전'
         },
         {
-          id: 55,
+          id: 223,
           name: '부여 백제문화단지',
           lat: 36.307243,
           lng: 126.906623,
@@ -1626,7 +1626,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 56,
+          id: 224,
           name: '보령 석탄박물관',
           lat: 36.333330,
           lng: 126.611110,
@@ -1642,7 +1642,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 57,
+          id: 225,
           name: '서천 국립생태원',
           lat: 36.030096,
           lng: 126.723435,
@@ -1658,7 +1658,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 58,
+          id: 226,
           name: '단양 활옥동굴',
           lat: 36.961404,
           lng: 128.007038,
@@ -1674,7 +1674,7 @@ function StampPage() {
           region: '충청'
         },
         {
-          id: 59,
+          id: 227,
           name: '담양 죽향문화체험마을',
           lat: 35.329670,
           lng: 126.985662,
@@ -1690,7 +1690,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 60,
+          id: 228,
           name: '고창 상하농원',
           lat: 35.447264,
           lng: 126.451621,
@@ -1706,7 +1706,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 61,
+          id: 229,
           name: '순천 낙안읍성 민속마을',
           lat: 34.907284,
           lng: 127.341159,
@@ -1722,7 +1722,7 @@ function StampPage() {
           region: '전라'
         },
         {
-          id: 62,
+          id: 230,
           name: '청도 와인터널',
           lat: 35.714421,
           lng: 128.720334,
@@ -1738,7 +1738,7 @@ function StampPage() {
           region: '경상'
         },
         {
-          id: 63,
+          id: 231,
           name: '양산 통도사 템플스테이',
           lat: 35.482780,
           lng: 129.057495,
@@ -1754,7 +1754,7 @@ function StampPage() {
           region: '경상'
         },
         {
-          id: 64,
+          id: 232,
           name: '김해 가야테마파크',
           lat: 35.250719,
           lng: 128.893173,

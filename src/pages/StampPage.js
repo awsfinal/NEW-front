@@ -102,7 +102,7 @@ function StampPage() {
           openTime: '07:00 - 18:00',
           price: '6,000원',
           category: '사찰',
-          address: '경상북도 경주시 진현동 15-1',
+          address: '경상북도 경주시 불국로 385',
           region: '경주'
         },
         {
@@ -118,7 +118,7 @@ function StampPage() {
           openTime: '05:00 - 19:00',
           price: '무료',
           category: '사찰',
-          address: '부산광역시 기장군 기장읍',
+          address: '부산광역시 기장군 기장읍 용궁길 86',
           region: '부산'
         },
         {
@@ -134,7 +134,7 @@ function StampPage() {
           openTime: '24시간',
           price: '무료',
           category: '한옥마을',
-          address: '전라북도 전주시 완산구',
+          address: '전라북도 전주시 완산구 기린대로 99',
           region: '전주'
         },
         {
@@ -150,7 +150,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '1,500원',
           category: '궁궐',
-          address: '경기도 수원시 팔달구',
+          address: '경기도 수원시 팔달구 정조로 825',
           region: '경기'
         },
         {
@@ -166,7 +166,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '3,000원',
           category: '고택',
-          address: '강원도 강릉시 율곡로',
+          address: '강원특별자치도 강릉시 율곡로 3139번길 24',
           region: '강릉'
         }
       ],
@@ -233,7 +233,7 @@ function StampPage() {
           openTime: '24시간',
           price: '무료',
           category: '성문',
-          address: '서울특별시 중구 세종대로',
+          address: '서울특별시 중구 세종대로 40',
           region: '서울'
         },
         {
@@ -249,7 +249,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '2,000원',
           category: '행궁',
-          address: '경기도 광주시 남한산성면',
+          address: '경기도 광주시 남한산성면 남한산성로 784-16',
           region: '경기'
         },
         {
@@ -265,7 +265,7 @@ function StampPage() {
           openTime: '07:00 - 18:00',
           price: '5,000원',
           category: '석굴',
-          address: '경상북도 경주시 진현동',
+          address: '경상북도 경주시 불국로 873-243',
           region: '경주'
         },
         {
@@ -281,7 +281,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '3,000원',
           category: '민속마을',
-          address: '경상북도 안동시 풍천면',
+          address: '경상북도 안동시 풍천면 하회종가길 69',
           region: '안동'
         },
         {
@@ -297,7 +297,7 @@ function StampPage() {
           openTime: '08:00 - 18:00',
           price: '3,000원',
           category: '사찰',
-          address: '경상남도 합천군 가야면',
+          address: '경상남도 합천군 가야면 해인사길 122',
           region: '합천'
         },
         {
@@ -313,7 +313,7 @@ function StampPage() {
           openTime: '04:00 - 20:00',
           price: '4,000원',
           category: '사찰',
-          address: '강원도 양양군 강현면',
+          address: '강원특별자치도 양양군 강현면 낙산사로 100',
           region: '양양'
         },
         {
@@ -329,7 +329,7 @@ function StampPage() {
           openTime: '05:00 - 19:00',
           price: '4,000원',
           category: '사찰',
-          address: '강원도 평창군 진부면',
+          address: '강원특별자치도 평창군 진부면 오대산로 374-8',
           region: '평창'
         },
         {
@@ -345,25 +345,10 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '무료',
           category: '고택',
-          address: '서울시 성북구 성북로 102-11',
+          address: '서울특별시 성북구 성북로 102-11',
           region: '서울'
         },
-        {
-          id: 18,
-          name: '뚝섬',
-          lat: 37.529256,
-          lng: 127.069888,
-          description: '한강변 레저공간',
-          popular: false,
-          image: '/heritage/ttukseom.jpg',
-          rating: 4.2,
-          reviews: 5670,
-          openTime: '24시간',
-          price: '무료',
-          category: '공원',
-          address: '서울시 성동구 자동차시장길 49',
-          region: '서울'
-        },
+
         {
           id: 19,
           name: '서대문형무소',
@@ -377,7 +362,7 @@ function StampPage() {
           openTime: '09:30 - 18:00',
           price: '3,000원',
           category: '역사관',
-          address: '서울시 서대문구 통일로 251',
+          address: '서울특별시 서대문구 통일로 251',
           region: '서울'
         },
         {
@@ -393,7 +378,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '무료',
           category: '재사',
-          address: '서울시 종로구 인사동길 30-1',
+          address: '서울특별시 종로구 인사동길 30-1',
           region: '서울'
         },
         {
@@ -409,7 +394,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '1,000원',
           category: '릉원',
-          address: '경기도 고양시',
+          address: '경기도 고양시 덕양구 서오릉로 334-92',
           region: '경기'
         },
         {
@@ -425,7 +410,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '무료',
           category: '산성',
-          address: '경기도 고양시',
+          address: '경기도 고양시 덕양구 행주로 15번길 89',
           region: '경기'
         },
         {
@@ -441,7 +426,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '2,000원',
           category: '선사유적',
-          address: '경기도 연천군',
+          address: '경기도 연천군 전곡읍 평화로 443번길 2',
           region: '경기'
         },
         {
@@ -457,7 +442,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '9,000원',
           category: '가옥',
-          address: '강원도 강릉시',
+          address: '강원특별자치도 강릉시 운정길 63',
           region: '강릉'
         },
         {
@@ -473,7 +458,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '3,000원',
           category: '역사유적',
-          address: '충청남도 공주시',
+          address: '충청남도 공주시 금성동 산5-2',
           region: '충청'
         },
         {
@@ -489,7 +474,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '1,500원',
           category: '사지',
-          address: '충청남도 부여군',
+          address: '충청남도 부여군 부여읍 정림로 83',
           region: '충청'
         },
         {
@@ -505,7 +490,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '1,200원',
           category: '산성',
-          address: '충청남도 공주시',
+          address: '충청남도 공주시 웅진로 280',
           region: '충청'
         },
         {
@@ -521,7 +506,7 @@ function StampPage() {
           openTime: '08:00 - 18:00',
           price: '4,000원',
           category: '사찰',
-          address: '충청북도 보은군',
+          address: '충청북도 보은군 속리산면 법주사로 405',
           region: '충청'
         },
         {
@@ -537,7 +522,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '무료',
           category: '석탑',
-          address: '충청북도 충주시',
+          address: '충청북도 충주시 중앙탑면 탑평리 11',
           region: '충청'
         },
         {
@@ -553,7 +538,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '2,000원',
           category: '정원',
-          address: '전라남도 담양군',
+          address: '전라남도 담양군 가사문학면 지곡길 17',
           region: '전라'
         },
         {
@@ -569,7 +554,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '2,000원',
           category: '선사유적',
-          address: '전라남도 화순군',
+          address: '전라남도 화순군 도곡면 효산리 산76-1',
           region: '전라'
         },
         {
@@ -585,7 +570,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '3,000원',
           category: '다리',
-          address: '전라북도 남원시',
+          address: '전라북도 남원시 요천로 1447',
           region: '전라'
         },
         {
@@ -601,7 +586,7 @@ function StampPage() {
           openTime: '09:00 - 18:00',
           price: '3,000원',
           category: '어진',
-          address: '전라북도 전주시',
+          address: '전라북도 전주시 완산구 태조로 44',
           region: '전라'
         },
         {
@@ -633,7 +618,7 @@ function StampPage() {
           openTime: '09:00 - 22:00',
           price: '3,000원',
           category: '고분',
-          address: '경상북도 경주시',
+          address: '경상북도 경주시 첫성로 9',
           region: '경주'
         }
       ]
@@ -832,6 +817,22 @@ function StampPage() {
           price: '무료',
           category: '쇼핑거리',
           address: '서울특별시 중구 명동2가',
+          region: '서울'
+        },
+        {
+          id: 139,
+          name: '뚝섬',
+          lat: 37.529256,
+          lng: 127.069888,
+          description: '한강변 레저공간',
+          popular: false,
+          image: '/tourist/ttukseom.jpg',
+          rating: 4.2,
+          reviews: 5670,
+          openTime: '24시간',
+          price: '무료',
+          category: '공원',
+          address: '서울시 성동구 자동차시장길 49',
           region: '서울'
         },
 
@@ -2228,20 +2229,16 @@ function StampPage() {
                           }}>
                             {selectedPlace.name}
                           </h3>
-                          <div style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            gap: '4px',
-                            margin: '2px 0'
+                          <p style={{
+                            margin: '2px 0',
+                            fontSize: '10px',
+                            color: '#666',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
                           }}>
-                            <span style={{ color: '#ff9800', fontSize: '10px' }}>★</span>
-                            <span style={{ fontSize: '10px', fontWeight: 'bold' }}>
-                              {selectedPlace.rating}
-                            </span>
-                            <span style={{ fontSize: '9px', color: '#666' }}>
-                              ({selectedPlace.reviews > 1000 ? `${Math.floor(selectedPlace.reviews/1000)}k` : selectedPlace.reviews})
-                            </span>
-                          </div>
+                            {selectedPlace.description}
+                          </p>
                         </div>
                         <button
                           onClick={() => setSelectedPlace(null)}
@@ -2263,22 +2260,9 @@ function StampPage() {
                       {/* Bottom Row */}
                       <div style={{ 
                         display: 'flex', 
-                        justifyContent: 'space-between',
+                        justifyContent: 'flex-end',
                         alignItems: 'center'
                       }}>
-                        <div>
-                          <div style={{ 
-                            fontSize: '11px', 
-                            fontWeight: 'bold',
-                            color: '#333'
-                          }}>
-                            {selectedPlace.price}
-                          </div>
-                          <div style={{ fontSize: '9px', color: '#666' }}>
-                            {selectedPlace.distance}
-                          </div>
-                        </div>
-                        
                         <button
                           onClick={() => navigate(`/detail/${selectedPlace.id}`)}
                           style={{

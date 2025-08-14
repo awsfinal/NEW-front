@@ -2,9 +2,9 @@
 node_modules
 npm-debug.log*
 
-# Build output
-build
-dist
+# Build output (빌드 시에는 제외하지 않음)
+# build
+# dist
 
 # Git
 .git
@@ -27,11 +27,6 @@ logs
 # OS
 .DS_Store
 Thumbs.db
-
-# Docker
-Dockerfile
-.dockerignore
-nginx.conf
 
 # Testing
 coverage

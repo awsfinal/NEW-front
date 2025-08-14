@@ -475,8 +475,8 @@ function MainPage() {
               position: 'absolute',
               top: '100%',
               right: 0,
-              backgroundColor: 'white',
-              border: '1px solid #007AFF',
+              backgroundColor: 'var(--card-color)',
+              border: '1px solid var(--accent-color)',
               borderRadius: '8px',
               boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               zIndex: 1000,
@@ -487,8 +487,9 @@ function MainPage() {
                   padding: '8px 12px',
                   cursor: 'pointer',
                   fontSize: 'var(--base-font-size)',
-                  borderBottom: '1px solid #f0f0f0',
-                  backgroundColor: language === 'ko' ? '#f0f8ff' : 'white'
+                  borderBottom: '1px solid var(--border-color)',
+                  backgroundColor: language === 'ko' ? 'var(--accent-color)' : 'var(--card-color)',
+                  color: language === 'ko' ? 'white' : 'var(--text-color)'
                 }}
                 onClick={() => {
                   setLanguage('ko');
@@ -504,7 +505,8 @@ function MainPage() {
                   padding: '8px 12px',
                   cursor: 'pointer',
                   fontSize: 'var(--base-font-size)',
-                  backgroundColor: language === 'en' ? '#f0f8ff' : 'white'
+                  backgroundColor: language === 'en' ? 'var(--accent-color)' : 'var(--card-color)',
+                  color: language === 'en' ? 'white' : 'var(--text-color)'
                 }}
                 onClick={() => {
                   setLanguage('en');
@@ -591,23 +593,23 @@ function MainPage() {
         {/* GPS 좌표 표시 */}
         {currentGPS && isGPSReady && (
           <div style={{
-            backgroundColor: '#f0f8ff',
+            backgroundColor: 'var(--card-color)',
             padding: '12px',
             borderRadius: '8px',
             marginBottom: '15px',
             border: '1px solid #007AFF',
             flexShrink: 0
           }}>
-            <div style={{ fontSize: 'var(--base-font-size)', fontWeight: 'bold', color: '#007AFF', marginBottom: '5px' }}>
+            <div style={{ fontSize: 'var(--base-font-size)', fontWeight: 'bold', color: 'var(--accent-color)', marginBottom: '5px' }}>
               📍 {t.gpsCoordinates}
             </div>
-            <div style={{ fontSize: 'var(--small-font-size)', color: '#333' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: 'var(--text-color)' }}>
               {t.latitude}: {currentGPS.latitude.toFixed(7)}
             </div>
-            <div style={{ fontSize: 'var(--small-font-size)', color: '#333' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: 'var(--text-color)' }}>
               {t.longitude}: {currentGPS.longitude.toFixed(7)}
             </div>
-            <div style={{ fontSize: 'var(--small-font-size)', color: '#666', marginTop: '3px' }}>
+            <div style={{ fontSize: 'var(--small-font-size)', color: 'var(--text-secondary)', marginTop: '3px' }}>
               {t.accuracy}: {Math.round(currentGPS.accuracy)}m | {t.measurement}: {currentGPS.measurementCount}{t.times} | {t.realTimeUpdate}
             </div>
           </div>
@@ -627,9 +629,9 @@ function MainPage() {
               textAlign: 'center', 
               cursor: 'pointer',
               padding: '12px 8px',
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}
           >
             <div style={{ fontSize: '18px', marginBottom: '5px' }}>❓</div>
@@ -642,9 +644,9 @@ function MainPage() {
               textAlign: 'center', 
               cursor: 'pointer',
               padding: '12px 8px',
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}
             onClick={() => navigate('/toilet')}
           >
@@ -658,9 +660,9 @@ function MainPage() {
               textAlign: 'center', 
               cursor: 'pointer',
               padding: '12px 8px',
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}
           >
             <div style={{ fontSize: '18px', marginBottom: '5px' }}>💊</div>
@@ -673,9 +675,9 @@ function MainPage() {
               textAlign: 'center', 
               cursor: 'pointer',
               padding: '12px 8px',
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}
           >
             <div style={{ fontSize: '18px', marginBottom: '5px' }}>💬</div>
@@ -742,7 +744,7 @@ function MainPage() {
                       display: 'none',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#999',
+                      color: 'var(--text-secondary)',
                       fontSize: '10px',
                       borderRadius: '8px'
                     }}
@@ -757,20 +759,20 @@ function MainPage() {
                     fontSize: 'var(--base-font-size)', 
                     fontWeight: '600', 
                     marginBottom: '3px',
-                    color: '#333'
+                    color: 'var(--text-color)'
                   }}>
                     {language === 'ko' ? heritage.name : heritage.nameEn}
                   </div>
                   <div style={{ 
                     fontSize: 'var(--small-font-size)', 
-                    color: '#666',
+                    color: 'var(--text-secondary)',
                     marginBottom: '3px'
                   }}>
                     📍 {language === 'ko' ? heritage.address : heritage.addressEn}
                   </div>
                   <div style={{ 
                     fontSize: 'var(--small-font-size)', 
-                    color: '#007AFF',
+                    color: 'var(--accent-color)',
                     fontWeight: '500'
                   }}>
                     {t.currentLocation} {heritage.formattedDistance || (language === 'ko' ? '계산 중...' : 'Calculating...')}

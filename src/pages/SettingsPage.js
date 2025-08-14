@@ -41,16 +41,17 @@ function SettingsPage() {
   return (
     <div style={{ 
       height: '100vh', 
-      backgroundColor: '#f5f5f5', 
+      backgroundColor: 'var(--bg-color)', 
+      color: 'var(--text-color)',
       display: 'flex', 
       flexDirection: 'column',
       overflow: 'hidden'
     }}>
       {/* Header */}
       <div style={{
-        backgroundColor: 'white',
+        backgroundColor: 'var(--surface-color)',
         padding: '15px 20px',
-        borderBottom: '1px solid #e0e0e0',
+        borderBottom: '1px solid var(--border-color)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -84,7 +85,12 @@ function SettingsPage() {
       }}>
         <div>
           {/* 글꼴 섹션 */}
-          <div style={{ marginBottom: '15px' }}>
+          <div style={{ 
+            marginBottom: '15px',
+            backgroundColor: '#f8f8f8',
+            padding: '15px',
+            borderRadius: '8px'
+          }}>
             <div style={{ 
               fontSize: '12px', 
               color: '#666', 
@@ -94,12 +100,12 @@ function SettingsPage() {
               {language === 'ko' ? '글꼴' : 'Font'}
             </div>
             <div style={{
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
               padding: '15px',
               display: 'flex',
               alignItems: 'center',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}>
               <img 
                 src="/image/settings_text.png" 
@@ -120,9 +126,9 @@ function SettingsPage() {
               >
                 {language === 'ko' ? (
                   <>
-                    <option value="작게">작게</option>
-                    <option value="보통">보통</option>
-                    <option value="크게">크게</option>
+                    <option value="small">작게</option>
+                    <option value="medium">보통</option>
+                    <option value="large">크게</option>
                   </>
                 ) : (
                   <>
@@ -136,7 +142,12 @@ function SettingsPage() {
           </div>
 
           {/* 개인정보 섹션 */}
-          <div style={{ marginBottom: '15px' }}>
+          <div style={{ 
+            marginBottom: '15px',
+            backgroundColor: '#f8f8f8',
+            padding: '15px',
+            borderRadius: '8px'
+          }}>
             <div style={{ 
               fontSize: '12px', 
               color: '#666', 
@@ -146,9 +157,9 @@ function SettingsPage() {
               {language === 'ko' ? '개인정보' : 'Personal Info'}
             </div>
             <div style={{
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}>
               <button 
                 style={{ 
@@ -194,7 +205,12 @@ function SettingsPage() {
           </div>
 
           {/* 애플리케이션 정보 섹션 */}
-          <div style={{ marginBottom: '15px' }}>
+          <div style={{ 
+            marginBottom: '15px',
+            backgroundColor: '#f8f8f8',
+            padding: '15px',
+            borderRadius: '8px'
+          }}>
             <div style={{ 
               fontSize: '12px', 
               color: '#666', 
@@ -204,12 +220,12 @@ function SettingsPage() {
               {t.appInfo}
             </div>
             <div style={{
-              backgroundColor: 'white',
+              backgroundColor: 'var(--card-color)',
               borderRadius: '10px',
               padding: '15px',
               display: 'flex',
               alignItems: 'center',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+              boxShadow: '0 1px 3px var(--shadow-color)'
             }}>
               <img 
                 src="/image/settings_version.png" 
@@ -223,7 +239,7 @@ function SettingsPage() {
 
           {/* 광고 영역 */}
           <div style={{
-            backgroundColor: '#ddd',
+            backgroundColor: 'var(--surface-color)',
             borderRadius: '10px',
             padding: '25px 20px',
             textAlign: 'center',

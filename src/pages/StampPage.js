@@ -1055,13 +1055,15 @@ function StampPage() {
         borderBottom: '1px solid #e0e0e0',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         position: 'relative',
         flexShrink: 0
       }}>
         <button 
           onClick={() => navigate('/main')}
           style={{
+            position: 'absolute',
+            left: '20px',
             background: 'none',
             border: 'none',
             fontSize: '18px',
@@ -1072,65 +1074,6 @@ function StampPage() {
           ←
         </button>
         <span style={{ fontSize: '18px', fontWeight: 'bold' }}>{t.stampCollection}</span>
-        
-        {/* Language Selector */}
-        <div style={{ position: 'relative' }}>
-          <div 
-            style={{ 
-              fontSize: '14px', 
-              color: '#007AFF',
-              cursor: 'pointer',
-              padding: '5px 8px',
-              borderRadius: '12px',
-              border: '1px solid #007AFF',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '3px',
-              minWidth: '60px',
-              justifyContent: 'center'
-            }}
-            onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-          >
-            🌐 {language === 'ko' ? 'KO' : 'EN'}
-          </div>
-          {showLanguageDropdown && (
-            <div style={{
-              position: 'absolute',
-              top: '100%',
-              right: 0,
-              backgroundColor: 'white',
-              border: '1px solid #007AFF',
-              borderRadius: '8px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-              zIndex: 1000,
-              minWidth: '80px'
-            }}>
-              <div 
-                style={{
-                  padding: '6px 10px',
-                  cursor: 'pointer',
-                  fontSize: '12px',
-                  borderBottom: '1px solid #f0f0f0',
-                  backgroundColor: language === 'ko' ? '#f0f8ff' : 'white'
-                }}
-                onClick={() => handleLanguageChange('ko')}
-              >
-                한국어
-              </div>
-              <div 
-                style={{
-                  padding: '6px 10px',
-                  cursor: 'pointer',
-                  fontSize: '12px',
-                  backgroundColor: language === 'en' ? '#f0f8ff' : 'white'
-                }}
-                onClick={() => handleLanguageChange('en')}
-              >
-                English
-              </div>
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Category Buttons */}
@@ -1239,17 +1182,18 @@ function StampPage() {
 
       {/* Content Area */}
       <div style={{ flex: 1, overflow: 'hidden', position: 'relative', paddingBottom: '70px' }}>
-        {viewMode === 'map' ? (
-          // Map View
-          <>
-            <div 
-              ref={mapRef}
-              style={{ 
-                width: '100%', 
-                height: '100%',
-                position: 'relative'
-              }}
-            >
+        {/* Map View - 목록 모드일 때 숨김 */}
+        <div 
+          ref={mapRef}
+          style={{ 
+            width: '100%', 
+            height: '100%',
+            position: 'relative',
+            display: viewMode === 'map' ? 'block' : 'none'
+          }}
+        >
+          {viewMode === 'map' && (
+            <>
               {/* 지도 로딩 중 표시 */}
               {!map && (
                 <div style={{
@@ -1268,135 +1212,143 @@ function StampPage() {
                   <div style={{ fontSize: '14px', color: '#666' }}>{language === 'ko' ? '지도 로딩 중...' : 'Loading map...'}</div>
                 </div>
               )}
-            </div>
             
-            {/* Selected Place Card - 하단 메뉴바를 침범하지 않도록 수정 */}
-            {selectedPlace && (
-              <div style={{
-                position: 'absolute',
-                bottom: '80px', // 네비게이션 바 위에 충분한 간격
-                left: '20px',
-                right: '20px',
-                backgroundColor: 'white',
-                borderRadius: '8px',
-                boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-                overflow: 'hidden',
-                zIndex: 1000,
-                height: '80px' // 고정 높이로 작게 설정
-              }}>
-                <div style={{ display: 'flex', height: '80px' }}>
-                  {/* Image */}
-                  <div style={{ width: '80px', flexShrink: 0 }}>
-                    <img 
-                      src={selectedPlace.image}
-                      alt={selectedPlace.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                      }}
-                      onError={(e) => {
-                        e.target.src = '/image/placeholder.jpg';
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Info */}
-                  <div style={{ 
-                    flex: 1, 
-                    padding: '8px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    minWidth: 0
-                  }}>
-                    {/* Top Row */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <h3 style={{ 
-                          margin: 0, 
-                          fontSize: '13px', 
-                          fontWeight: 'bold',
-                          color: '#333',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          whiteSpace: 'nowrap'
-                        }}>
-                          {selectedPlace.name}
-                        </h3>
-                        <div style={{ 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          gap: '4px',
-                          margin: '2px 0'
-                        }}>
-                          <span style={{ color: '#ff9800', fontSize: '10px' }}>★</span>
-                          <span style={{ fontSize: '10px', fontWeight: 'bold' }}>
-                            {selectedPlace.rating}
-                          </span>
-                          <span style={{ fontSize: '9px', color: '#666' }}>
-                            ({selectedPlace.reviews > 1000 ? `${Math.floor(selectedPlace.reviews/1000)}k` : selectedPlace.reviews})
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => setSelectedPlace(null)}
+              {/* Selected Place Card - 하단 메뉴바를 침범하지 않도록 수정 */}
+              {selectedPlace && (
+                <div style={{
+                  position: 'absolute',
+                  bottom: '80px', // 네비게이션 바 위에 충분한 간격
+                  left: '20px',
+                  right: '20px',
+                  backgroundColor: 'white',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+                  overflow: 'hidden',
+                  zIndex: 1000,
+                  height: '80px' // 고정 높이로 작게 설정
+                }}>
+                  <div style={{ display: 'flex', height: '80px' }}>
+                    {/* Image */}
+                    <div style={{ width: '80px', flexShrink: 0 }}>
+                      <img 
+                        src={selectedPlace.image}
+                        alt={selectedPlace.name}
                         style={{
-                          background: 'none',
-                          border: 'none',
-                          fontSize: '14px',
-                          cursor: 'pointer',
-                          color: '#999',
-                          padding: '0',
-                          marginLeft: '8px',
-                          flexShrink: 0
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
                         }}
-                      >
-                        ×
-                      </button>
+                        onError={(e) => {
+                          e.target.src = '/image/placeholder.jpg';
+                        }}
+                      />
                     </div>
                     
-                    {/* Bottom Row */}
+                    {/* Info */}
                     <div style={{ 
-                      display: 'flex', 
+                      flex: 1, 
+                      padding: '8px',
+                      display: 'flex',
+                      flexDirection: 'column',
                       justifyContent: 'space-between',
-                      alignItems: 'center'
+                      minWidth: 0
                     }}>
-                      <div>
-                        <div style={{ 
-                          fontSize: '11px', 
-                          fontWeight: 'bold',
-                          color: '#333'
-                        }}>
-                          {selectedPlace.price}
+                      {/* Top Row */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <h3 style={{ 
+                            margin: 0, 
+                            fontSize: '13px', 
+                            fontWeight: 'bold',
+                            color: '#333',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                          }}>
+                            {selectedPlace.name}
+                          </h3>
+                          <div style={{ 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '4px',
+                            margin: '2px 0'
+                          }}>
+                            <span style={{ color: '#ff9800', fontSize: '10px' }}>★</span>
+                            <span style={{ fontSize: '10px', fontWeight: 'bold' }}>
+                              {selectedPlace.rating}
+                            </span>
+                            <span style={{ fontSize: '9px', color: '#666' }}>
+                              ({selectedPlace.reviews > 1000 ? `${Math.floor(selectedPlace.reviews/1000)}k` : selectedPlace.reviews})
+                            </span>
+                          </div>
                         </div>
-                        <div style={{ fontSize: '9px', color: '#666' }}>
-                          {selectedPlace.distance}
-                        </div>
+                        <button
+                          onClick={() => setSelectedPlace(null)}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            fontSize: '14px',
+                            cursor: 'pointer',
+                            color: '#999',
+                            padding: '0',
+                            marginLeft: '8px',
+                            flexShrink: 0
+                          }}
+                        >
+                          ×
+                        </button>
                       </div>
                       
-                      <button
-                        onClick={() => navigate(`/detail/${selectedPlace.id}`)}
-                        style={{
-                          backgroundColor: '#4CAF50',
-                          color: 'white',
-                          border: 'none',
-                          padding: '4px 8px',
-                          borderRadius: '4px',
-                          fontSize: '9px',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        {language === 'ko' ? '상세보기' : 'Details'}
-                      </button>
+                      {/* Bottom Row */}
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}>
+                        <div>
+                          <div style={{ 
+                            fontSize: '11px', 
+                            fontWeight: 'bold',
+                            color: '#333'
+                          }}>
+                            {selectedPlace.price}
+                          </div>
+                          <div style={{ fontSize: '9px', color: '#666' }}>
+                            {selectedPlace.distance}
+                          </div>
+                        </div>
+                        
+                        <button
+                          onClick={() => navigate(`/detail/${selectedPlace.id}`)}
+                          style={{
+                            backgroundColor: '#4CAF50',
+                            color: 'white',
+                            border: 'none',
+                            padding: '4px 8px',
+                            borderRadius: '4px',
+                            fontSize: '9px',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {language === 'ko' ? '상세보기' : 'Details'}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </>
-        ) : (
-          // List View - MainPage 스타일과 유사하게
+              )}
+            </>
+          )}
+        </div>
+        
+        {/* List View - 지도 모드일 때 숨김 */}
+        <div style={{ 
+          display: viewMode === 'list' ? 'flex' : 'none',
+          height: '100%', 
+          flexDirection: 'column',
+          backgroundColor: '#f5f5f5'
+        }}>
+          {/* List View Content - MainPage 스타일과 유사하게 */}
           <div style={{ 
             height: '100%', 
             display: 'flex', 
@@ -1631,7 +1583,7 @@ function StampPage() {
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Navigation Bar */}
